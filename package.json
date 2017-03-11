@@ -8,7 +8,8 @@
     "test": "mocha ./build-tests --recursive",
     "prepublishOnly": "npm run build",
     "lint": "tslint --project ./ts",
-    "build": "rimraf ./build && tsc -p ts"
+    "build": "rimraf ./build && tsc -p ts",
+    "start": "http-server demo"
   },
   "files": [
     "ts",
@@ -44,6 +45,7 @@
     "@types/chai": "^3.4.35",
     "@types/mocha": "^2.2.39",
     "chai": "^3.5.0",
+    "http-server": "^0.9.0",
     "mocha": "^3.2.0",
     "rimraf": "^2.5.2",
     "tslint": "^4.5.1",
