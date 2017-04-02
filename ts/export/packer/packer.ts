@@ -5,6 +5,7 @@ import { Document } from "../../docx";
 import { Media } from "../../media";
 import { Numbering } from "../../numbering";
 import { Properties } from "../../properties";
+import { Relationships } from "../../relationships";
 import { Styles } from "../../styles";
 import { DefaultStylesFactory } from "../../styles/factory";
 import { Formatter } from "../formatter";
@@ -15,6 +16,7 @@ export abstract class Packer {
     protected archive: any;
     private formatter: Formatter;
     private style: Styles;
+    private relationships;
 
     constructor(
         protected document: Document,
@@ -29,6 +31,7 @@ export abstract class Packer {
     ) {
         this.formatter = new Formatter();
         this.archive = archiver.create("zip", {});
+        this.relationships = new Relationships();
 
         if (style) {
             this.style = style;
@@ -63,6 +66,7 @@ export abstract class Packer {
             },
         });
         const xmlNumbering = xml(this.formatter.format(this.numbering));
+        const xmlRelationships = xml(this.formatter.format(this.relationships));
 
         this.archive.append(xmlDocument, {
             name: "word/document.xml",
@@ -78,6 +82,10 @@ export abstract class Packer {
 
         this.archive.append(xmlNumbering, {
             name: "word/numbering.xml",
+        });
+
+        this.archive.append(xmlRelationships, {
+            name: "word/_rels/document.xml.rels",
         });
 
         for (const data of this.media.array) {
