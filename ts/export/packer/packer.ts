@@ -16,7 +16,7 @@ export abstract class Packer {
     protected archive: any;
     private formatter: Formatter;
     private style: Styles;
-    private relationships;
+    private relationships: Relationships;
 
     constructor(
         protected document: Document,
@@ -66,7 +66,6 @@ export abstract class Packer {
             },
         });
         const xmlNumbering = xml(this.formatter.format(this.numbering));
-        const xmlRelationships = xml(this.formatter.format(this.relationships));
 
         this.archive.append(xmlDocument, {
             name: "word/document.xml",
@@ -84,15 +83,18 @@ export abstract class Packer {
             name: "word/numbering.xml",
         });
 
-        this.archive.append(xmlRelationships, {
-            name: "word/_rels/document.xml.rels",
-        });
-
         for (const data of this.media.array) {
+            this.relationships.addRelationship("http://schemas.openxmlformats.org/officeDocument/2006/relationships/image", `media/${data.fileName}`);
             this.archive.append(data.stream, {
                 name: `media/${data.fileName}`,
             });
         }
+
+        const xmlRelationships = xml(this.formatter.format(this.relationships));
+
+        this.archive.append(xmlRelationships, {
+            name: "word/_rels/document.xml.rels",
+        });
 
         this.archive.finalize();
     }
