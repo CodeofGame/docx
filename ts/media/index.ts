@@ -2,6 +2,8 @@ import * as fs from "fs";
 import * as path from "path";
 import { IData } from "./data";
 
+const RELATIONSHIP_OFFSET = 3;
+
 export class Media {
     private map: Map<string, IData>;
 
@@ -21,7 +23,7 @@ export class Media {
 
     public addMedia(key: string, filePath: string): void {
         this.map.set(key, {
-            referenceId: this.map.values.length,
+            referenceId: this.map.values.length + RELATIONSHIP_OFFSET,
             stream: fs.createReadStream(filePath),
             path: filePath,
             fileName: path.basename(filePath),
