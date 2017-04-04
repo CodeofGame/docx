@@ -1,6 +1,6 @@
+import { IData } from "../../../../../../media/data";
 import { XmlAttributeComponent, XmlComponent } from "../../../../../xml-components";
 import { GraphicData } from "./graphic-data";
-
 
 interface IGraphicProperties {
     a: string;
@@ -14,11 +14,11 @@ class GraphicAttributes extends XmlAttributeComponent<IGraphicProperties> {
 
 export class Graphic extends XmlComponent {
 
-    constructor(referenceId: number) {
+    constructor(imageData: IData) {
         super("a:graphic");
         this.root.push(new GraphicAttributes({
             a: "http://schemas.openxmlformats.org/drawingml/2006/main",
         }));
-        this.root.push(new GraphicData(referenceId));
+        this.root.push(new GraphicData(imageData));
     }
 }

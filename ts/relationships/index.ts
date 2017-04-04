@@ -4,8 +4,6 @@ import { Relationship } from "./relationship";
 
 export class Relationships extends XmlComponent {
 
-    private counter: number;
-
     constructor() {
         super("Relationships");
         this.root.push(new RelationshipsAttributes({
@@ -23,16 +21,13 @@ export class Relationships extends XmlComponent {
             type: "http://schemas.openxmlformats.org/officeDocument/2006/relationships/numbering",
             target: "numbering.xml",
         }));
-
-        this.counter = 3;
     }
 
-    public addRelationship(type: string, target: string): void {
+    public addRelationship(id: number, type: string, target: string): void {
         this.root.push(new Relationship({
-            id: `rId${this.counter}`,
+            id: `rId${id}`,
             type: type,
             target: target,
         }));
-        this.counter++;
     }
 }

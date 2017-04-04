@@ -84,7 +84,8 @@ export abstract class Packer {
         });
 
         for (const data of this.media.array) {
-            this.relationships.addRelationship("http://schemas.openxmlformats.org/officeDocument/2006/relationships/image", `media/${data.fileName}`);
+            // need to sync media and relationship ids
+            this.relationships.addRelationship(data.referenceId, "http://schemas.openxmlformats.org/officeDocument/2006/relationships/image", `media/${data.fileName}`);
             this.archive.append(data.stream, {
                 name: `media/${data.fileName}`,
             });
