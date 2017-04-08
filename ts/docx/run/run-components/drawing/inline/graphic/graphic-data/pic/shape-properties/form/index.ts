@@ -4,10 +4,10 @@ import { Offset } from "./offset";
 
 export class Form extends XmlComponent {
 
-    constructor() {
+    constructor(x: number, y: number) {
         super("a:xfrm");
 
         this.root.push(new Offset(0, 0));
-        this.root.push(new Extends(5269230, 3521710));
+        this.root.push(new Extends(x, y));
     }
 }

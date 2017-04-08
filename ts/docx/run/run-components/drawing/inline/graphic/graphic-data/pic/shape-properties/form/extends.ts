@@ -5,7 +5,7 @@ interface IExtendsProperties {
     cy: number;
 }
 
-class ExtendsPropertiesAttributes extends XmlAttributeComponent<IExtendsProperties> {
+class ExtendsAttributes extends XmlAttributeComponent<IExtendsProperties> {
     protected xmlKeys = {
         cx: "cx",
         cy: "cy",
@@ -17,7 +17,7 @@ export class Extends extends XmlComponent {
     constructor(x: number, y: number) {
         super("a:ext");
 
-        this.root.push(new ExtendsPropertiesAttributes({
+        this.root.push(new ExtendsAttributes({
             cx: x,
             cy: y,
         }));

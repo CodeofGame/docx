@@ -21,8 +21,8 @@ export class DocProperties extends XmlComponent {
         super("wp:docPr");
 
         this.root.push(new DocPropertiesAttributes({
-            id: imageData.id,
-            name: `Picture ${imageData.id}`,
+            id: imageData.naturalId,
+            name: `Picture ${imageData.naturalId}`,
             descr: imageData.fileName,
         }));
     }

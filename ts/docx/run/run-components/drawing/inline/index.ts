@@ -34,7 +34,7 @@ export class Inline extends XmlComponent {
             distL: 0,
             distR: 0,
         }));
-        this.root.push(new Extent(5260340, 3947160));
+        this.root.push(new Extent(imageData.cx, imageData.cy));
         this.root.push(new EffectExtent());
         this.root.push(new DocProperties(imageData));
         this.root.push(new GraphicFrameProperties());

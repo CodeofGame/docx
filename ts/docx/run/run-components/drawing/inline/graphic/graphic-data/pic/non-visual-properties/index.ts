@@ -8,7 +8,7 @@ export class NonVisualPicProperties extends XmlComponent {
     constructor(imageData: IData) {
         super("pic:nvPicPr");
 
-        this.root.push(new NonVisualDetailProperties(imageData.referenceId, imageData.fileName));
+        this.root.push(new NonVisualDetailProperties(imageData.id, `Picture ${imageData.naturalId}`));
         this.root.push(new NonVisualTransformProperties());
     }
 }

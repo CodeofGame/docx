@@ -1,12 +1,13 @@
-import { XmlAttributeComponent, XmlComponent } from "../../../../../../../../xml-components";
+import { XmlAttributeComponent, XmlComponent } from "../../../../../../../../../xml-components";
+import { PicLocks } from "./locks";
 
 interface INonVisualTransformProperties {
-    noChangeAspect?: string;
-    noCrop?: string;
-    noMove?: string;
-    noResize?: string;
-    noRotation?: string;
-    noSelect?: string;
+    noChangeAspect?: number;
+    noCrop?: number;
+    noMove?: number;
+    noResize?: number;
+    noRotation?: number;
+    noSelect?: number;
 }
 
 class NonVisualTransformAttributes extends XmlAttributeComponent<INonVisualTransformProperties> {
@@ -25,6 +26,6 @@ export class NonVisualTransformProperties extends XmlComponent {
     constructor() {
         super("pic:cNvPicPr");
 
-        this.root.push(new NonVisualTransformAttributes({}));
+        this.root.push(new PicLocks());
     }
 }
