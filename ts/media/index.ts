@@ -23,6 +23,7 @@ export class Media {
 
     public addMedia(key: string, filePath: string): void {
         this.map.set(key, {
+            id: this.map.values.length + 1,
             referenceId: this.map.values.length + RELATIONSHIP_OFFSET,
             stream: fs.createReadStream(filePath),
             path: filePath,
