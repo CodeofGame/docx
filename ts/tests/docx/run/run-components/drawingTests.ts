@@ -7,12 +7,16 @@ describe("Drawing", () => {
     let currentBreak: Drawing;
 
     beforeEach(() => {
-        const path = "./demo/penguins.jpg";
+        const path = "./demo/penguins.jpeg";
         currentBreak = new Drawing({
             fileName: "test.jpg",
             referenceId: 1,
             stream: fs.createReadStream(path),
             path: path,
+            id: 0,
+            naturalId: 0,
+            cx: 100,
+            cy: 100,
         });
     });
 
