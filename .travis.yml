@@ -1,0 +1,15 @@
+language: node_js
+node_js:
+  - "stable"
+install:
+  - npm install
+script:
+  - npm test
+after_failure: 
+  - "cat /home/travis/builds/dolanmiu/docx/npm-debug.log"
+after_success:
+  - bash ./deploy-docs.sh
+env:
+  global:
+  - ENCRYPTION_LABEL: "ad385fa3b525"
+  
